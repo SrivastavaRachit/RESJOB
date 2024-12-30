@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Navbar from '../NavBar/NavBar';
+import axios from "axios";
+
 
 const FormPage = () => {
   const [formData, setFormData] = useState({
@@ -21,9 +23,29 @@ const FormPage = () => {
   };
 
   const submitData = async (data) => {
-    // Simulate an API call
-    console.log("Submitting data to backend:", data);
-    alert("Form submitted successfully! (Simulated)");
+    try {
+      const formData = new FormData();
+      formData.append("name", data.name);
+      formData.append("college", data.college);
+      formData.append("passOutYear", data.passOutYear);
+      formData.append("experience", data.experience);
+      formData.append("jobDescription", data.jobDescription);
+      if (data.profileImage) {
+        formData.append("profileImage", data.profileImage);
+      }
+  
+      const response = await axios.post("http://localhost:4000/api/form/create", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+  
+      console.log("Form submitted successfully:", response.data);
+      alert("Form submitted successfully!");
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Error submitting form. Please try again.");
+    }
   };
 
   const handleSubmit = async (e) => {

@@ -4,7 +4,7 @@ import { submitForm } from "../controllers/formController.js";
 
 const router = express.Router();
 
-// Multer configuration
+// Multer configuration for file storage
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, "uploads/");
@@ -13,10 +13,9 @@ const storage = multer.diskStorage({
         cb(null, `${Date.now()}-${file.originalname}`);
     },
 });
-
 const upload = multer({ storage });
 
-// Route to handle form submission
-router.post("/submit", upload.single("profileImage"), submitForm);
+// Middleware for handling form submission with file upload
+router.post("/create", upload.single("profileImage"), submitForm);  // Handles a single file upload (profileImage)
 
 export default router;
