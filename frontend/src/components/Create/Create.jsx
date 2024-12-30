@@ -83,19 +83,6 @@ const FormPage = () => {
                   placeholder="Enter pass-out year"
                 />
               </div>
-              <div>
-                <label className="block text-gray-600 font-medium mb-1">
-                  Experience
-                </label>
-                <input
-                  type="text"
-                  name="experience"
-                  value={formData.experience}
-                  onChange={handleInputChange}
-                  className="w-full p-3 border rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-300"
-                  placeholder="Enter your experience"
-                />
-              </div>
             </div>
 
             <div>
