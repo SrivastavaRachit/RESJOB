@@ -28,7 +28,6 @@ const FormPage = () => {
       formData.append("name", data.name);
       formData.append("college", data.college);
       formData.append("passOutYear", data.passOutYear);
-      formData.append("experience", data.experience);
       formData.append("jobDescription", data.jobDescription);
       if (data.profileImage) {
         formData.append("profileImage", data.profileImage);

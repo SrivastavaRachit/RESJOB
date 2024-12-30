@@ -1,33 +1,28 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios"; // Import axios for API calls
 import Navbar from '../NavBar/NavBar'; // Import the Navbar component
 
-const DisplayPage = () => {
+const See = () => {
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const fetchUsers = async () => {
-    // Simulate fetching data from a backend
-    console.log("Fetching user data...");
-    const mockData = [
-      {
-        name: "John Doe",
-        college: "Example University",
-        passOutYear: "2020",
-        jobDescription: "Frontend Developer",
-        profileImage: null,
-      },
-      {
-        name: "Jane Smith",
-        college: "Sample Institute",
-        passOutYear: "2018",
-        jobDescription: "Backend Developer",
-        profileImage: null,
-      },
-    ];
-    setUsers(mockData);
+    try {
+      setLoading(true);
+      const response = await axios.get("http://localhost:4000/api/form/all");
+      console.log(response.data); // Log the response
+      setUsers(response.data);
+    } catch (err) {
+      console.error("Error fetching users:", err);
+      setError("Failed to load user data. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
   };
-
+  
   useEffect(() => {
-    fetchUsers(); // Replace with actual API call later
+    fetchUsers();
   }, []);
 
   return (
@@ -37,7 +32,11 @@ const DisplayPage = () => {
         <h1 className="text-2xl font-bold text-gray-700 mb-6 text-center">
           User Information
         </h1>
-        {users.length > 0 ? (
+        {loading ? (
+          <p className="text-gray-500 text-center mt-10">Loading...</p>
+        ) : error ? (
+          <p className="text-red-500 text-center mt-10">{error}</p>
+        ) : users.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {users.map((user, index) => (
               <div
@@ -47,7 +46,7 @@ const DisplayPage = () => {
                 <div className="flex items-center mb-4">
                   {user.profileImage ? (
                     <img
-                      src={URL.createObjectURL(user.profileImage)}
+                      src={user.profileImage} // Assuming the backend sends a URL
                       alt="Profile"
                       className="w-16 h-16 rounded-full object-cover mr-4"
                     />
@@ -84,4 +83,4 @@ const DisplayPage = () => {
   );
 };
 
-export default DisplayPage;
+export default See;
