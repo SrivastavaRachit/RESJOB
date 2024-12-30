@@ -42,8 +42,6 @@ export const submitForm = async (req, res) => {
 };
 
 
-
-
 export const getFormData = async (req, res) => {
     try {
         const forms = await Form.find({});
