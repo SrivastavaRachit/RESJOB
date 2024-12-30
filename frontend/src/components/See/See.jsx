@@ -12,7 +12,6 @@ const DisplayPage = () => {
         name: "John Doe",
         college: "Example University",
         passOutYear: "2020",
-        experience: "2 years",
         jobDescription: "Frontend Developer",
         profileImage: null,
       },
@@ -20,7 +19,6 @@ const DisplayPage = () => {
         name: "Jane Smith",
         college: "Sample Institute",
         passOutYear: "2018",
-        experience: "4 years",
         jobDescription: "Backend Developer",
         profileImage: null,
       },
@@ -68,10 +66,6 @@ const DisplayPage = () => {
                 <p className="text-gray-600">
                   <span className="font-medium">Pass Out Year:</span>{" "}
                   {user.passOutYear}
-                </p>
-                <p className="text-gray-600">
-                  <span className="font-medium">Experience:</span>{" "}
-                  {user.experience}
                 </p>
                 <p className="text-gray-600">
                   <span className="font-medium">Job Description:</span>{" "}
