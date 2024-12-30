@@ -20,3 +20,6 @@ export const saveFormData = async (data) => {
         return { success: false, error: error.message };
     }
 };
+
+// Export the Form model
+export { Form };

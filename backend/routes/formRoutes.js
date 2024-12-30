@@ -1,6 +1,6 @@
 import express from "express";
 import multer from "multer";
-import { submitForm } from "../controllers/formController.js";
+import { submitForm, getFormData } from "../controllers/formController.js";
 
 const router = express.Router();
 
@@ -17,5 +17,6 @@ const upload = multer({ storage });
 
 // Middleware for handling form submission with file upload
 router.post("/create", upload.single("profileImage"), submitForm);  // Handles a single file upload (profileImage)
+router.get("/all", getFormData);
 
 export default router;

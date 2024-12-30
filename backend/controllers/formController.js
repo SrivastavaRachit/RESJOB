@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { saveFormData } from "../models/formModel.js";
+import { saveFormData , Form} from "../models/formModel.js";
 
 export const submitForm = async (req, res) => {
     const { name, college, passOutYear, jobDescription } = req.body;
@@ -47,7 +47,7 @@ export const getFormData = async (req, res) => {
         const forms = await Form.find({});
         const result = forms.map((form) => ({
             ...form._doc,
-            profileImage: `data:image/jpeg;base64,${form.profileImage}`, // Return Base64 image for UI
+            profileImage: `data:image/jpeg;base64,${fs.readFileSync(`uploads/${form.profileImage}`, 'base64')}`, // Return Base64 image for UI
         }));
         return res.status(200).json(result);
     } catch (error) {
