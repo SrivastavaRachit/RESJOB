@@ -33,7 +33,7 @@ const FormPage = () => {
         formData.append("profileImage", data.profileImage);
       }
   
-      const response = await axios.post("http://localhost:4000/api/form/create", formData, {
+      const response = await axios.post("https://resjob-backend.onrender.com/api/form/create", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
