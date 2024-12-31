@@ -10,7 +10,7 @@ const See = () => {
   const fetchUsers = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("http://localhost:4000/api/form/all");
+      const response = await axios.get("https://resjob-backend.onrender.com/api/form/all");
       console.log(response.data); // Log the response
       setUsers(response.data);
     } catch (err) {
