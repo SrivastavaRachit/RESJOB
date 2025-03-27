@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios"; // Import axios for API calls
-import Navbar from '../NavBar/NavBar'; // Import the Navbar component
+import axios from "axios";
+import Navbar from '../NavBar/NavBar';
 
 const See = () => {
   const [users, setUsers] = useState([]);
