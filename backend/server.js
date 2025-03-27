@@ -8,7 +8,7 @@ import 'dotenv/config';
 
 // APP CONFIG
 const app = express();
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 5000;
 
 // MIDDLEWARE
 app.use(express.json()); // Built-in middleware to parse JSON data
