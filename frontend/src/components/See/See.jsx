@@ -1,24 +1,23 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios"; // Import axios for API calls
-import Navbar from '../NavBar/NavBar'; // Import the Navbar component
+import axios from "axios";
+import Navbar from '../NavBar/NavBar';
 
 const See = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   const fetchUsers = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.get("http://localhost:4000/api/form/all");
-      console.log(response.data); // Log the response
-      setUsers(response.data);
-    } catch (err) {
-      console.error("Error fetching users:", err);
-      setError("Failed to load user data. Please try again later.");
-    } finally {
-      setLoading(false);
-    }
+try {
+  setLoading(true);
+  const response = await axios.get("https://resjob-backend.onrender.com/api/form/all");
+  setUsers(response.data);
+} catch (err) {
+  console.error("Error fetching users:", err.response?.data || err.message);
+  setError("Failed to load user data. Please try again later.");
+} finally {
+  setLoading(false);
+}
+
   };
   
   useEffect(() => {
